@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="盯盘场景脑状态提醒演示界面 — 输出/提醒层 UI（任务1）">
+<title>盯盘状态提醒 · 输出/提醒层演示界面</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============================ 顶栏 ============================ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" id="brandMark" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.6 12.2h3.9l2.2-5.8 4.2 11.4 2.4-5.6h6.1"/></svg></div>
+    <div class="brand-text">
+      <h1>脑状态盯盘助手 <span class="tagline">输出 / 提醒层</span><button class="demo-tag" id="demoTag" type="button" title="点击切换：演示形态 / 产品形态（产品形态隐藏手动注入、粘贴数据、单帧与格子点击注入）">演示</button></h1>
+      <p>Reminder UI Demo · 数据源 state_engine v2.8 · mock 驱动</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="seg" id="segMode" role="tablist" aria-label="数据源模式">
+      <button data-mode="auto" class="active" role="tab">自动轮播</button>
+      <button data-mode="manual" role="tab">手动注入</button>
+      <button data-mode="paste" role="tab">粘贴数据</button>
+      <button data-mode="live" role="tab">真机/回放</button>
+    </div>
+    <span class="hint" id="liveHint" hidden></span>
+    <button id="btnDetail" class="icon-btn" title="详细数据与判别">详情</button>
+    <button id="btnSettings" class="icon-btn" title="设置">设置</button>
+    <button id="btnCalib" class="icon-btn" title="真机校准（三段采集）">校准</button>
+    <button id="btnAbout" class="icon-btn" title="技术说明">说明</button>
+    <button id="btnTheme" class="icon-btn icon-only" title="切换主题" aria-label="切换主题"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"/></svg></button>
+  </div>
+</header>
+
+<!-- ============================ 控制条（精简：仅核心操作） ============================ -->
+<section class="controlbar card" aria-label="数据流控制">
+  <div class="ctrl-group ctrl-buttons">
+    <button id="btnPlay" class="primary-btn"><span class="ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.6 5.4v13.2L19.4 12z" fill="currentColor" stroke="none"/></svg></span><span id="playLabel">开始推流</span></button>
+    <button id="btnStep" class="ghost-btn" title="推进一帧">单帧</button>
+    <button id="btnReset" class="ghost-btn" title="重置引擎与统计">重置</button>
+  </div>
+  <div class="ctrl-group ctrl-tip">
+    <span class="hint">推流速度、仿真步长、任务态、语音、免打扰、注入伪迹等均移至「设置」面板</span>
+  </div>
+</section>
+
+<!-- ============================ 主栅格（精简：三区块） ============================ -->
+  <!-- ---------- 链路提示条（v3.8）：仅在真机/回放断线或数据停更时出现 ---------- -->
+  <div class="notice" id="notice" role="status" aria-live="polite" hidden>
+    <span class="notice-ico" id="noticeIco" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.9 2.9 19.7h18.2z"/><path d="M12 10v4.1"/><path d="M12 17.1h.01"/></svg></span>
+    <span class="notice-txt" id="noticeTxt"></span>
+    <button class="ghost-btn tiny" id="btnNoticeRetry">重新连接</button>
+  </div>
+
+  <!-- ---------- 未校准横幅（v3.13）：真机 + 默认基线时出现 ---------- -->
+  <div class="notice notice-calib" id="calibBanner" role="status" aria-live="polite" hidden>
+    <span class="notice-ico" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.9 2.9 19.7h18.2z"/><path d="M12 10v4.1"/><path d="M12 17.1h.01"/></svg></span>
+    <span class="notice-txt" id="calibBannerTxt"></span>
+    <button class="ghost-btn tiny" id="btnCalibBanner">去校准</button>
+  </div>
+
+<main class="grid">
+  <!-- ---------- 区块 1：状态展示区（核心） ---------- -->
+  <section class="card panel" id="panel-state" aria-labelledby="h-state">
+    <div class="card-head">
+      <h2 id="h-state">状态展示区</h2>
+      <span class="hint" id="stateHint">当前状态 · 置信度 · 6 项核心指标</span>
+    </div>
+
+    <!-- 主状态卡 -->
+    <div class="state-hero" id="stateHero" data-family="idle">
+      <div class="hero-left">
+        <div class="hero-ring">
+          <svg viewBox="0 0 84 84" aria-hidden="true">
+            <circle class="ring-bg" cx="42" cy="42" r="36"></circle>
+            <circle class="ring-fg" id="ringFg" cx="42" cy="42" r="36"></circle>
+          </svg>
+          <div class="ring-center"><b id="vConf">0.60</b><span>置信度</span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-name"><span class="hero-icon" id="heroIcon" aria-hidden="true"></span><b id="vStateCn">中性/未确认</b><code id="vStateKey">neutral</code></div>
+        <div class="hero-badges">
+          <span class="badge-level" id="vLevel" data-level="silent">silent</span>
+          <span class="badge-soft" id="vWeak" hidden>弱判别</span>
+          <span class="badge-soft" id="vCooldown" hidden>冷却 0s</span>
+        </div>
+        <p class="hero-action" id="vAction">等待数据…</p>
+      </div>
+    </div>
+
+    <!-- 核心指标（6 项） -->
+    <div class="metrics" id="metrics">
+      <div class="metric" title="att / med：头环自带的注意力 / 冥想指数（0–100），非本引擎计算，仅作旁证"><span class="mk">att / med</span><b class="mv" id="mAttMed">–</b></div>
+      <div class="metric" title="R_tb = θ / β：θ 与 β 的功率比。疲劳时 θ 升高、β 降低，比值上升；判据取 z(R_tb) ≥ 1.5"><span class="mk">R_tb (θ/β)</span><b class="mv" id="mRtb">–</b></div>
+      <div class="metric" data-norr title="RMSSD₆₀：60s 窗内相邻 RR 间期差值的均方根（ms），HRV 的时域指标。需要 RR 通道"><span class="mk">RMSSD₆₀ <i class="nr-tag" hidden title="本机未接 RR 通道（硬质头环无 PPG），该指标恒不可算">无RR</i></span><b class="mv" id="mRmssd">–</b></div>
+      <div class="metric" data-norr title="HR：由 RR 间期换算的心率（bpm）。需要 RR 通道"><span class="mk">HR <i class="nr-tag" hidden title="本机未接 RR 通道（硬质头环无 PPG），该指标恒不可算">无RR</i></span><b class="mv" id="mHr">–</b></div>
+      <div class="metric" title="I_f：疲劳积分，θ_norm 超阈后按 τ=300s 一阶收敛累积；累积等效 300s 才过门控"><span class="mk">I_f 积分</span><b class="mv" id="mIf">–</b></div>
+      <div class="metric" title="电极接触质量：取头环上报的 poorSignalLevel（0 最佳 / 200 未接触），本引擎按 ≤50 好、≤120 一般、&gt;120 差分级"><span class="mk">电极接触</span><b class="mv" id="mSignal" data-q="na" title="演示模式没有接触质量数据；切到「真机/回放」才有效">模拟</b></div>
+    </div>
+    <!-- v3.13：把"硬件不支持"说清楚。主界面不占位（会挤掉 8 态网格最后一行），
+         说明放两处：卡片标题行的一句话 + 设置面板里的完整原因。 -->
+
+    <!-- 8 状态判别网格（v3.8：从详情抽屉移到主界面 —— 它是"为什么判成这个状态"的直接证据） -->
+    <h4 class="grp">8 状态判别网格</h4>
+    <span class="cap" id="gridCap">亮点=门控成立 · 数字=加权得分 · 点击可注入</span>
+    <div class="state-grid" id="stateGrid"></div>
+
+    <div class="card-foot">
+      <button class="ghost-btn tiny" id="btnOpenDetail">特征 z-score · 冷却监视 →</button>
+    </div>
+  </section>
+
+  <!-- ---------- 区块 2：理智度评分曲线 ---------- -->
+  <section class="card panel" aria-labelledby="h-curve">
+    <div class="card-head">
+      <h2 id="h-curve">理智度评分曲线</h2>
+      <div class="head-tools">
+        <span class="hint" id="curveRange">最近 0 点</span>
+        <button class="chip active" data-span="120">近 120</button>
+        <button class="chip" data-span="0">全部</button>
+      </div>
+    </div>
+
+    <div class="calm-summary">
+      <div class="calm-main">
+        <span class="ck">冷静度 · 基于决策</span>
+        <div class="cv-row">
+          <b class="cv" id="vCalm">—</b>
+          <span class="trend" id="vTrend" data-dir="flat">— 持平</span>
+        </div>
+        <span class="calm-roll" id="vRoll">样本 0 次 · 近 10 次 —</span>
+      </div>
+    </div>
+
+    <!-- 零样本引导（v3.13）：冷静度以「决策」为唯一口径，没决策就没有分母。
+         此前 engine.calmness 在 log.total=0 时返回 1.00，界面显示绿色满分，
+         把"还没有数据"读成"状态极佳"——这是最容易被答辩追问的语义错误。 -->
+    <div class="calm-zero" id="calmZero">
+      <span class="cz-txt">尚无决策样本 —— 冷静度 = 1 − 冲动次数 / 总决策数，先记录一次操作</span>
+      <div class="cz-btns">
+        <button class="trade buy" data-act="买入">买入</button>
+        <button class="trade sell" data-act="卖出">卖出</button>
+        <button class="trade hold" data-act="持有">持有</button>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="calmChart" height="230"></canvas>
+      <div class="chart-tip" id="chartTip" hidden></div>
+      <div class="chart-empty" id="chartEmpty">暂无数据 · 点击「开始推流」后曲线实时绘制</div>
+    </div>
+
+    <div class="card-foot">
+      <span class="legend" title="鼠标/手指移到曲线上可查看该点详情">
+        <i class="lg lg-line"></i>理智度
+        <i class="lg lg-dash"></i>近 10 次决策
+      </span>
+      <button class="ghost-btn tiny" id="btnOpenLegend">图例 / A·B 对照 →</button>
+    </div>
+  </section>
+
+  <!-- ---------- 区块 3：提醒中心（精简：最新提醒） ---------- -->
+  <section class="card panel" id="panel-remind" aria-labelledby="h-remind">
+    <div class="card-head">
+      <h2 id="h-remind">提醒中心</h2>
+      <span class="hint" id="remindCount">0 条</span>
+    </div>
+
+    <div class="filter-row" id="remindFilter">
+      <button class="chip active" data-lv="all">全部</button>
+      <button class="chip" data-lv="mild">mild</button>
+      <button class="chip" data-lv="calm">calm</button>
+      <button class="chip" data-lv="strong">strong</button>
+      <button class="chip" data-lv="silent">silent</button>
+    </div>
+    <div class="remind-stream remind-stream-main" id="remindStream">
+      <div class="empty-slot"><span class="es-art" aria-hidden="true"></span><b>暂无提醒事件</b><span class="es-hint">触发 mild / calm / silent 级别时会出现在这里</span></div>
+    </div>
+
+    <!-- v3.13：本次会话的状态分布。空态占位改成"有内容可看"——
+         一屏 8 个状态谁占多久，比一张空插画有用。 -->
+    <div class="dist-block">
+      <div class="dist-head">
+        <span class="dist-title">本次会话 · 状态占比</span>
+        <span class="cap" id="distTotal">0 帧</span>
+      </div>
+      <div class="dist-body">
+        <svg class="dist-ring" id="distRing" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="var(--surface-3)" stroke-width="12"></circle>
+          <g id="distArcs"></g>
+        </svg>
+        <ul class="dist-legend" id="distLegend"></ul>
+      </div>
+    </div>
+
+    <div class="card-foot">
+      <button class="ghost-btn tiny" id="btnOpenRemind">全部提醒 / 决策模拟 →</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>任务1 · 输出/提醒层 UI 形态 · 8 状态 + 4 级提醒 + 理智度曲线</span>
+  <span class="foot-dim">mock 数据仅验证管道与展示，不验证判别准确性（设计文档 §七）</span>
+</footer>
+
+<!-- ============================ 悬浮层 ============================ -->
+<!-- 桌面角标（盯盘常驻） -->
+<div class="badge" id="badge" data-family="idle" tabindex="0" role="button" aria-label="状态角标，点击展开">
+  <div class="bdg-dot"></div>
+  <div class="bdg-main">
+    <b id="bdgState">中性</b>
+    <span id="bdgConf">conf 0.60</span>
+  </div>
+  <div class="bdg-count" id="bdgCount" hidden>0</div>
+</div>
+<!-- 角标展开迷你面板 -->
+<div class="badge-panel" id="badgePanel" hidden>
+  <div class="bp-head"><b id="bpState">中性/未确认</b><span class="badge-level" id="bpLevel" data-level="silent">silent</span></div>
+  <p id="bpAction">等待数据…</p>
+  <div class="bp-meta"><span id="bpConf">置信度 0.60</span><span id="bpCool">冷却 —</span></div>
+  <button class="ghost-btn tiny" id="bpClose">收起</button>
+</div>
+
+<!-- 提醒弹窗层 -->
+<div class="toast-layer" id="toastLayer" aria-live="polite"></div>
+
+<!-- 抽屉：详情 / 设置 / 说明 -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer-head">
+    <div class="dh-left">
+      <b id="drawerTitle">详细数据与判别</b>
+      <div class="drawer-tabs" id="drawerTabs">
+        <button class="chip" data-pane="detail">详情</button>
+        <button class="chip" data-pane="settings">设置</button>
+        <button class="chip" data-pane="calib">校准</button>
+        <button class="chip" data-pane="about">说明</button>
+      </div>
+      <span class="cap">关闭方式：右上角关闭按钮 · 点击左侧半透明遮罩 · 键盘 ESC（三种都回到主界面，主界面数据不受影响）</span>
+    </div>
+    <button class="icon-btn icon-only" id="drawerClose" aria-label="关闭面板"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.4 6.4 17.6 17.6"/><path d="M17.6 6.4 6.4 17.6"/></svg></button>
+  </div>
+  <div class="drawer-body">
+
+    <!-- ============ 面板 1：详情（次要参数 / 详细数据，默认隐藏） ============ -->
+    <div id="paneDetail">
+      <h4 class="grp">运行读数</h4>
+      <div class="readouts detail-readouts">
+        <div class="ro"><span class="k">仿真时钟</span><b class="v" id="vClock">0 s</b></div>
+        <div class="ro"><span class="k">帧数</span><b class="v" id="vFrames">0</b></div>
+        <div class="ro"><span class="k">伪迹剔除</span><b class="v" id="vArtifact">0</b></div>
+      </div>
+
+      <h4 class="grp">次要指标</h4>
+      <div class="metrics detail-metrics">
+        <div class="metric"><span class="mk">still（静止度）</span><b class="mv" id="mStill">–</b></div>
+      </div>
+
+      <h4 class="grp">判别说明</h4>
+      <p class="note">8 状态判别网格已移到主界面左卡（常驻可见）。相位切换期出现 <code>neutral</code> 属设计特性：5s 活窗内命中率未达 HIT_RATIO → 不予确认（v2.7 时间确认，防单帧抖动翻转）。压力状态还需 60s HRV 窗重新填满才脱离上一相位。</p>
+
+      <h4 class="grp">优先级仲裁队列</h4>
+      <span class="cap">拖拽或用 ↑↓ 方向键调整顺序，松开即时重算仲裁结果。</span>
+      <ul class="prio-list" id="prioList"></ul>
+      <button class="ghost-btn tiny" id="btnPrioReset">恢复默认优先级</button>
+
+      <h4 class="grp">特征 z-score（个体偏离）</h4>
+      <span class="cap">相对校准基线 μ/σ 的偏离倍数；虚线为 ±1σ / ±1.5σ 判据参考线。</span>
+      <div class="zbar-list" id="zbarList"></div>
+
+      <h4 class="grp">干预冷却监视</h4>
+      <span class="cap">各状态提醒后进入冷却，冷却期内不再打扰。</span>
+      <div class="cd-list" id="cdList"></div>
+
+      <h4 class="grp">曲线图例</h4>
+      <div class="legend">
+        <span class="lg line-solid"></span><em>累计 calmness（实线）</em>
+        <span class="lg line-dash"></span><em>近 10 次滚动（虚线）</em>
+        <span class="lg good"></span><em>良好 (focus/flow/relaxed)</em>
+        <span class="lg warn"></span><em>注意 (fatigue/distracted)</em>
+        <span class="lg alert"></span><em>干预 (stress/anxiety/drowsy)</em>
+        <span class="lg idle"></span><em>中性/未确认</em>
+        <span class="lg-mark"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.4 6.4 17.6 17.6"/><path d="M17.6 6.4 6.4 17.6"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.2"/></svg></span><em>冲动 / 冷静操作</em>
+      </div>
+
+      <h4 class="grp">A / B 段对照</h4>
+      <div class="calm-ab">
+        <div class="ab-col" id="abA"><span class="k">A 段 · 无干预</span><b id="vCalmA">—</b><i id="vCntA">0 次决策</i></div>
+        <div class="ab-vs">vs</div>
+        <div class="ab-col" id="abB"><span class="k">B 段 · 有干预</span><b id="vCalmB">—</b><i id="vCntB">0 次决策</i></div>
+      </div>
+
+      <h4 class="grp">决策模拟（理智度统计）</h4>
+      <span class="cap">在非冷静态下操作记为「冲动」。冲动判定：当前状态属于 stress/anxiety/drowsy/fatigue/distracted 且置信度 ≥ 弱判别阈值。</span>
+      <div class="ab-switch" id="abSwitch">
+        <button class="chip active" data-seg="A">A 段 无干预</button>
+        <button class="chip" data-seg="B">B 段 有干预</button>
+      </div>
+      <div class="decision-row">
+        <button class="trade buy" data-act="买入">买入</button>
+        <button class="trade sell" data-act="卖出">卖出</button>
+        <button class="trade hold" data-act="持有">持有</button>
+      </div>
+      <div class="decision-stat">
+        <div><span class="k">总决策</span><b id="vTotal">0</b></div>
+        <div><span class="k">冲动操作</span><b id="vImp">0</b></div>
+        <div><span class="k">是否冲动</span><b id="vIsImp">—</b></div>
+      </div>
+
+      <h4 class="grp">桌面角标 / 弹窗预览</h4>
+      <span class="cap">与屏幕右上角真实角标同源同数据，此处用于静态预览。</span>
+      <div class="preview-zone">
+        <div class="prev-badge" id="prevBadge">
+          <div class="pb-dot"></div>
+          <div class="pb-text"><b id="pbState">中性</b><span id="pbConf">0.60</span></div>
+        </div>
+        <div class="prev-popup" id="prevPopup" data-level="calm">
+          <div class="pp-bar"></div>
+          <div class="pp-head"><span class="pp-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12.1c2.2 0 2.5-4.3 4.9-4.3s2.6 8.6 5 8.6 2.6-8.6 5-8.6 2.2 4.3 4.4 4.3"/></svg></span><b>3 次深呼吸（Laborde 2022）</b></div>
+          <p class="pp-body">检测到 <code>stress</code> · 置信度 0.95 · 干预建议</p>
+          <div class="pp-actions"><button class="ghost-btn tiny">稍后提醒</button><button class="primary-btn tiny">开始干预</button></div>
+        </div>
+      </div>
+
+      <h4 class="grp">全部提醒事件</h4>
+      <span class="cap">筛选条件与主界面「提醒中心」的筛选按钮共用同一状态。</span>
+      <div class="remind-stream remind-stream-all" id="remindStreamAll">
+        <div class="empty-slot"><span class="es-art" aria-hidden="true"></span><b>暂无提醒事件</b><span class="es-hint">触发 mild / calm / strong 级别时会出现在这里（silent 只记入统计、不打扰）</span></div>
+      </div>
+
+      <h4 class="grp">会话统计导出</h4>
+      <div class="row-btns">
+        <button class="ghost-btn tiny" id="btnExportStats">导出本次会话（CSV）</button>
+      </div>
+      <span class="cap">含帧数、决策数、冷静度、8 状态占比与提醒事件明细。全部在本机生成，不上传任何数据。</span>
+    </div>
+
+    <!-- ============ 面板 2：设置（次要参数与高级选项，默认隐藏） ============ -->
+    <!-- ============ 面板：校准（§六 三段协议；真机使用前必做） ============ -->
+    <div id="paneCalib" hidden>
+      <h4 class="grp">当前基线</h4>
+      <div class="readouts detail-readouts">
+        <div class="ro"><span class="k">θ_ref（疲劳参照）</span><b class="v" id="cbThetaRef">55.0</b></div>
+        <div class="ro"><span class="k">来源</span><b class="v" id="cbSrc">default</b></div>
+        <div class="ro"><span class="k">θ_rest（闭眼参考）</span><b class="v" id="cbThetaRest">–</b></div>
+        <div class="ro"><span class="k">上次校准</span><b class="v" id="cbCalibAt">–</b></div>
+      </div>
+      <span class="cap">默认基线是 mock 演示值（θ_ref=55、α=100）。<b>真机必须先校准</b>：z 判据全部相对个体基线，用默认值等于拿别人的脑电判你。θ_ref 取自 B 段（睁眼任务参照），不取 A 段闭眼——闭眼 θ 偏高会让疲劳积分永不启动。</span>
+
+      <h4 class="grp">三段校准（§六 协议）</h4>
+      <div class="row-btns">
+        <button class="primary-btn" id="btnCalibStart">开始校准</button>
+        <button class="ghost-btn tiny" id="btnCalibCancel" hidden>取消</button>
+        <button class="ghost-btn tiny" id="btnBaselineDefault">恢复默认基线</button>
+      </div>
+      <label class="switch" style="margin-top:8px"><input type="checkbox" id="chkCalibFull"><i></i><span>完整协议时长（A 30s / B 120s / C 120s）</span></label>
+      <span class="cap" id="calibStep">未开始。A 段闭眼静息（δ 基线）→ B 段睁眼静坐（z 基线 + θ_ref）→ C 段闭眼放松（校验放松态可判）。</span>
+      <div class="calib-bar"><div class="calib-bar-fill" id="calibBar"></div></div>
+      <div class="note" id="calibReport" hidden></div>
+      <span class="cap">校准结果写本机 localStorage（同一受试者当日可复用）；换人或重新佩戴必须重校。伪迹帧占比超 30% 判校准失败，会提示重戴。</span>
+
+      <h4 class="grp">导入 / 导出基线</h4>
+      <div class="row-btns">
+        <button class="ghost-btn tiny" id="btnBaselineExport">导出 JSON</button>
+        <label class="ghost-btn tiny" for="fileBaseline" style="cursor:pointer">导入 JSON</label>
+        <input type="file" id="fileBaseline" accept=".json,application/json" hidden>
+      </div>
+      <span class="cap">用于跨设备搬移校准结果（如从实验机到演示机）；导入后立即生效，无需重启推流。</span>
+
+      <h4 class="grp">真机 / 回放接入</h4>
+      <span class="cap">由 <code>项目文件\live_bridge.py</code> 提供数据（SSE 推送）：先在命令行启动桥（<code>--source serial|replay|mock</code>），再切到顶部「真机/回放」模式。回放 CSV 可离线调参，不必反复佩戴。</span>
+      <div class="field">
+        <label for="txtBridge">桥地址 <span class="cap">（默认本机 8770）</span></label>
+        <input type="text" id="txtBridge" value="http://127.0.0.1:8770" spellcheck="false">
+      </div>
+      <div class="row-btns">
+        <button class="ghost-btn tiny" id="btnBridgeConnect">连接</button>
+        <button class="ghost-btn tiny" id="btnBridgeClose">断开</button>
+        <span class="cap" id="bridgeStatus">未连接</span>
+      </div>
+    </div>
+
+    <div id="paneSettings" hidden>
+      <!-- v3.10：数据源诊断 —— /health 一直存在但没有前端入口，现场只能另开终端 curl -->
+      <h4 class="grp">数据源诊断</h4>
+      <div class="diag" id="diagBox" data-state="idle">        <span class="diag-dot" aria-hidden="true"></span>
+        <div class="diag-txt">
+          <b id="diagTitle">未检测</b>
+          <span class="cap" id="diagDesc">点「刷新诊断」查询服务端 /health</span>
+        </div>
+        <button class="ghost-btn tiny" id="btnDiagRefresh">刷新诊断</button>
+      </div>
+      <div class="readouts detail-readouts">
+        <div class="ro"><span class="k">数据源</span><b class="v" id="dgSource">–</b></div>
+        <div class="ro"><span class="k">已推送帧</span><b class="v" id="dgFrames">–</b></div>
+        <div class="ro"><span class="k">SSE 连接</span><b class="v" id="dgClients">–</b></div>
+        <div class="ro"><span class="k">运行时长</span><b class="v" id="dgUptime">–</b></div>
+      </div>
+      <p class="metrics-note" id="metricsNote" hidden></p>
+
+      <h4 class="grp">数据流控制</h4>
+      <div class="field">
+        <label for="rngStep">仿真步长 <b id="lblStep">1 s/帧</b></label>
+        <input type="range" id="rngStep" min="1" max="5" step="1" value="1">
+        <span class="cap">每推进一帧，仿真时钟前进的秒数（影响 I_f 积分与冷却计时）</span>
+      </div>
+      <div class="field">
+        <label for="rngSpeed">推流速度 <b id="lblSpeed">8 帧/秒</b></label>
+        <input type="range" id="rngSpeed" min="1" max="20" step="1" value="8">
+        <span class="cap">连续播放时每秒处理的帧数</span>
+      </div>
+      <div class="opt-row">
+        <label class="switch"><input type="checkbox" id="chkTask" checked><i></i><span>任务态 <code>task_active</code></span></label>
+        <label class="switch"><input type="checkbox" id="chkVoice"><i></i><span>语音播报</span></label>
+        <label class="switch"><input type="checkbox" id="chkDnd"><i></i><span>免打扰</span></label>
+      </div>
+      <span class="cap">任务态：影响依赖 <code>task_active</code> 的状态判据；语音播报：仅播报下方勾选的级别；免打扰：不弹出提醒浮窗，但仍记入提醒中心。</span>
+      <div class="row-btns" style="margin-top:10px">
+        <button class="ghost-btn tiny" id="btnArtifact">注入伪迹</button>
+      </div>
+      <span class="cap">注入一帧异常数据用于验证「打标不硬判」：伪迹帧只被计数剔除，不改变当前状态。</span>
+
+      <h4 class="grp">判别参数（实时生效）</h4>
+      <div class="field">
+        <label for="sWeakConf">弱判别阈值 WEAK_CONF <b id="lblWeakConf">0.70</b></label>
+        <input type="range" id="sWeakConf" min="0.6" max="0.95" step="0.01" value="0.7">
+        <span class="cap">conf &lt; 阈值 → 仅记录；持续 60 帧升级为 mild</span>
+      </div>
+      <div class="field">
+        <label for="sDebounce">时间确认窗口 DEBOUNCE_S <b id="lblDebounce">5 s</b></label>
+        <input type="range" id="sDebounce" min="1" max="20" step="1" value="5">
+        <span class="cap">窗内命中率 ≥ HIT_RATIO 才确认状态（防单帧抖动翻转）</span>
+      </div>
+      <div class="field">
+        <label for="sHitRatio">HIT_RATIO <b id="lblHitRatio">0.60</b></label>
+        <input type="range" id="sHitRatio" min="0.3" max="1" step="0.05" value="0.6">
+      </div>
+      <div class="field">
+        <label for="sCdScale">冷却倍率 <b id="lblCdScale">1.0 ×</b></label>
+        <input type="range" id="sCdScale" min="0" max="2" step="0.25" value="1">
+        <span class="cap">0× = 关闭冷却（演示连续提醒）；基准：强/中 60s，轻 30s</span>
+      </div>
+      <div class="field">
+        <label for="sAdapt" class="row-label">个体基线自适应 ADAPT <input type="checkbox" id="sAdapt"></label>
+        <span class="cap">v2.8 #9，默认关闭（存在污染风险，须真机评估后启用）</span>
+      </div>
+      <div class="field">
+        <label class="row-label">演示加速：进入疲劳段时预置 I_f
+          <input type="checkbox" id="sDemoBoost" checked>
+        </label>
+        <span class="cap">仅演示用：疲劳 I_f 需自然累积 ~10min 才过 300s 门控，预置到 270s 可在约 50 帧后自然越过阈值。<b>不改动任何判据</b>，取消勾选后为纯自然累积。</span>
+      </div>
+
+      <h4 class="grp">提醒通道</h4>
+      <div class="field">
+        <label class="row-label">桌面通知（Notification API）
+          <button class="ghost-btn tiny" id="btnNotifyPerm">请求权限</button>
+        </label>
+        <label class="row-label"><input type="checkbox" id="sUseNotify" checked> 触发提醒时发送桌面通知</label>
+        <span class="cap" id="notifyCap">当前权限：未知</span>
+      </div>
+      <div class="field">
+        <label class="row-label">语音播报（仅 calm 类默认开启）
+          <label class="switch tight"><input type="checkbox" id="sVoice"><i></i><span></span></label>
+        </label>
+        <div class="fieldset">
+          <label for="sVoiceRate">语速 <b id="lblRate">1.0</b></label>
+          <input type="range" id="sVoiceRate" min="0.5" max="2" step="0.1" value="1">
+          <label for="sVoiceVol">音量 <b id="lblVol">0.9</b></label>
+          <input type="range" id="sVoiceVol" min="0" max="1" step="0.05" value="0.9">
+          <label for="sVoiceSel">音色</label>
+          <select id="sVoiceSel"><option value="">默认（系统）</option></select>
+        </div>
+        <div class="chk-row" id="voiceLevels">
+          <label><input type="checkbox" value="mild"> mild 也播报</label>
+          <label><input type="checkbox" value="calm" checked> calm 播报</label>
+          <label><input type="checkbox" value="strong" checked> strong 播报</label>
+        </div>
+        <button class="ghost-btn tiny" id="btnTestVoice">试听（stress 话术）</button>
+        <span class="cap">浏览器要求首次播报需用户交互触发；silent 类永不播报（不打扰原则）</span>
+      </div>
+
+      <h4 class="grp">粘贴帧数据（JSON Lines）</h4>
+      <div class="field">
+        <textarea id="pasteArea" rows="6" spellcheck="false"
+          placeholder='每行一帧，如：{"attention":65,"meditation":55,"theta":55,"beta":100,"alpha":130,"delta":100,"gamma":50,"rr_ms":800}'></textarea>
+        <div class="row-btns">
+          <button class="ghost-btn tiny" id="btnSample">填入示例</button>
+          <button class="primary-btn tiny" id="btnLoadPaste">载入并逐帧播放</button>
+        </div>
+        <p class="paste-msg" id="pasteMsg"></p>
+        <span class="cap">字段缺失自动取默认；数值非法（NaN/负值）行会被跳过并在上方提示</span>
+      </div>
+
+      <h4 class="grp">疲劳演示工具</h4>
+      <div class="field">
+        <div class="row-btns">
+          <button class="ghost-btn tiny" id="btnFastIf">I_f 快进 +300s</button>
+          <button class="ghost-btn tiny" id="btnClearIf">I_f 归零</button>
+        </div>
+        <span class="cap">疲劳需累积等效 300s 才过 I_f 门控，演示可用快进跳过等待</span>
+      </div>
+    </div>
+
+    <!-- ============ 面板 3：说明 ============ -->
+    <div id="paneAbout" hidden>
+      <h4 class="grp">运用的模型</h4>
+      <ul class="about-list">
+        <li><b>可解释线性加权判别模型</b>：8 状态各一条 <code>score = Σ wᵢ·z(特征ᵢ)</code>，刻意不用 NN/GBDT 黑盒，保证每条规则可溯源到文献。</li>
+        <li><b>个体 z-score 偏离模型</b>：全特征相对校准基线 μ/σ 判偏离，不做绝对阈值；含 σ_min 下限保护。</li>
+        <li><b>门控 + 优先级仲裁 + 时间确认</b>：门控定资格，优先级定胜负（stress &gt; anxiety &gt; drowsy &gt; fatigue &gt; distracted &gt; flow &gt; focus &gt; relaxed），5s 窗命中率 ≥0.6 抑制抖动。</li>
+        <li><b>信号模型</b>：EWMA 平滑（α=0.2）、伪迹 8×/15× 门限、10s EEG / 60s RR / 30s GYRO 时间戳滑动窗、RMSSD 双指标、I_f 疲劳积分（τ=300 收敛）。</li>
+        <li><b>置信度</b>：线性映射 + clamp [0.6, 0.95]；疲劳动/嗜睡走门控余量特判。</li>
+        <li><b>干预依据</b>：Laborde 2022 深呼吸放松训练（stress/anxiety 话术）。</li>
+      </ul>
+
+      <h4 class="grp">运用的应用 / 接口</h4>
+      <ul class="about-list">
+        <li><b>BrainLink 单通道额区干电极 EEG</b>（设备层）：原始频段功率 + attention/meditation 官方指数。</li>
+        <li><b>Web Speech API</b>（<code>speechSynthesis</code>）：calm 类话术语音播报。</li>
+        <li><b>Notification API</b>：桌面系统通知角标提醒。</li>
+        <li><b>localStorage</b>：偏好本地持久化（隐私模式不可用会自动降级）。</li>
+        <li><b>Vibration API</b>：移动端 calm 级提醒的短振动反馈。</li>
+      </ul>
+
+      <h4 class="grp">运用的软件 / 技术栈</h4>
+      <ul class="about-list">
+        <li><b>Python 3</b>：组长侧参考实现 <code>state_engine.py</code>（v2.8）、<code>brain_sim_tb.py</code>（mock 数据源）。</li>
+        <li><b>HTML5 + CSS3 + ES2017 JavaScript</b>：本界面，<b>零第三方依赖</b>，可直接双击打开。</li>
+        <li><b>Canvas 2D</b>：理智度曲线与状态着色带绘制（含 devicePixelRatio 高清重采样）。</li>
+        <li><b>SVG</b>：置信度环形进度。</li>
+        <li><b>Pointer Events / Drag &amp; Drop</b>：优先级列表拖拽排序、弹窗拖动、滑杆与曲线十字线。</li>
+        <li><b>CSS Grid / Flex + 媒体查询</b>：桌面三栏 → 平板两栏 → 移动单栏响应式。</li>
+      </ul>
+
+      <h4 class="grp">口径与免责</h4>
+      <ul class="about-list dim">
+        <li>派生指标（同步率 sync_ratio）为工程派生口径，官方无独立字段。</li>
+        <li>疲劳/I_f 积分、ADAPT_*、SLEEP_MIGRATE_S 为经验初值，非文献值。</li>
+        <li>F1=89% 系 EPOCX 14 通道被试内结果，单通道额区不可复现。</li>
+        <li>mock 数据仅验证管道与界面，不验证判别准确性。</li>
+      </ul>
+    </div>
+
+  </div>
+</aside>
+
+<script src="js/icons.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/mock.js"></script>
+<script src="js/bridge.js"></script>
+<script src="js/util.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

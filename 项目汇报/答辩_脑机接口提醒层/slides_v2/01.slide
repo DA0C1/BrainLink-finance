@@ -1,0 +1,46 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: 60, position: 'relative' }}
+  notes={`各位老师好，我们组的题目是《脑机接口数据在金融实践中的应用》。
+
+一句话说清我们做了什么：戴一个几百块的脑电头环，在你做决定的时候，判断你现在是什么状态，该提醒的时候提醒一句。我们把它做成了一个能跑的完整系统。
+
+今天五个人讲，每人讲自己做的那一段：这东西能用在哪、我们怎么做的、做到什么程度。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 8, height: 720, background: '#1E4FA8' }} />
+
+  <Box style={{ display: 'flex', flexDirection: 'row', height: 600, alignItems: 'center' }}>
+    {/* 左：文字 */}
+    <Box style={{ width: 592, paddingLeft: 44, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 15, color: '#1E4FA8', fontWeight: 'bold', letterSpacing: 2, marginBottom: 18 }}>
+        COURSE DEFENSE · 2026
+      </Text>
+
+      <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#1A2230', lineHeight: 1.32 }}>
+        脑机接口数据在<br />金融实践中的应用
+      </Text>
+
+      <Box style={{ width: 72, height: 5, background: '#1E4FA8', marginTop: 22, marginBottom: 18 }} />
+
+      <Text style={{ fontSize: 25, color: '#3D7BD9', fontWeight: '600' }}>
+        在做决定的时候，告诉你现在是什么状态
+      </Text>
+
+      <Text style={{ fontSize: 17, color: '#4A5568', marginTop: 12, lineHeight: 1.6 }}>
+        8 种状态 · 先测你自己的正常水平 · 分四级提醒 · 五个人从零搭起来
+      </Text>
+
+      <Box style={{ width: 480, height: 1, background: '#D6DCE5', marginTop: 34, marginBottom: 16 }} />
+
+      <Text style={{ fontSize: 15, color: '#8B97A8', lineHeight: 1.75 }}>
+        脑机接口选修课 · 小组项目 · 课程答辩<br />
+        2026 年 11 月
+      </Text>
+    </Box>
+
+    {/* 右：插图 */}
+    <Box style={{ width: 540, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box style={{ width: 500, height: 250, backgroundImage: 'url(__IMG_COVER__)', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+      <Text style={{ fontSize: 13, color: '#B8C2D0', marginTop: 10 }}>
+        示意图：单通道额区采集 → 状态曲线
+      </Text>
+    </Box>
+  </Box>
+</Slide>

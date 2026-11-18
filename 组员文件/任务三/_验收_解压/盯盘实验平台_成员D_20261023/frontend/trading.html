@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟盯盘 · WatchLab</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="terminal">
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">WATCHLAB</span>
+      <span class="sub">模拟盯盘任务</span>
+    </div>
+    <nav class="nav">
+      <span id="top-round" class="muted">第 1 轮</span>
+    </nav>
+  </header>
+
+  <div class="banner hidden" id="mode-banner"></div>
+
+  <div class="trading-shell">
+    <div class="trading-top">
+      <span class="chip gold" id="subject-chip">受试者</span>
+      <span class="chip" id="clock-chip">剩余 --:--</span>
+      <span class="chip"><span class="status-dot off" id="status-dot"></span><span id="status-text">待开始</span></span>
+      <span class="chip muted" id="record-chip">数据记录中</span>
+      <div class="top-spacer"></div>
+      <span class="chip muted">模拟行情，非真实市场数据</span>
+    </div>
+
+    <main class="trading-main">
+      <section class="card chart-card">
+        <div class="chart-head">
+          <div class="price-now" id="price-now">--</div>
+          <div class="price-change" id="price-change">--</div>
+          <div class="meta">
+            <span id="refresh-hint">行情每 2 秒更新一次</span>，只显示已经发生的行情<br>
+            <span id="tick-meta">尚未开始</span>
+          </div>
+        </div>
+        <div class="chart-box" id="chart"></div>
+      </section>
+
+      <aside class="side">
+        <div class="card panel">
+          <h3>账户</h3>
+          <div class="account-grid">
+            <div class="acct"><div class="k">可用现金</div><div class="v" id="acct-cash">--</div></div>
+            <div class="acct"><div class="k">总资产</div><div class="v" id="acct-total">--</div></div>
+            <div class="acct"><div class="k">持仓股数</div><div class="v" id="acct-pos">--</div></div>
+            <div class="acct"><div class="k">持仓成本</div><div class="v" id="acct-avg">--</div></div>
+            <div class="acct"><div class="k">浮动盈亏</div><div class="v" id="acct-float">--</div></div>
+            <div class="acct"><div class="k">已实现盈亏</div><div class="v" id="acct-real">--</div></div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h3>下单</h3>
+          <div class="seg" id="seg">
+            <button type="button" data-ratio="0.25">1/4</button>
+            <button type="button" data-ratio="0.5" class="active">1/2</button>
+            <button type="button" data-ratio="0.75">3/4</button>
+            <button type="button" data-ratio="1">全仓</button>
+          </div>
+          <div class="trade-actions">
+            <button class="btn btn-buy" id="btn-buy" disabled>买入</button>
+            <button class="btn btn-sell" id="btn-sell" disabled>卖出</button>
+          </div>
+          <p class="small muted mt12" id="trade-msg">选择仓位比例后下单。</p>
+        </div>
+
+        <div class="card panel">
+          <h3>本轮提示</h3>
+          <div class="state-line" id="state-line">
+            <span class="dot"></span>
+            <span id="state-text">等待开始</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="toast-stack events" id="event-stack"></div>
+  <div class="toast-stack feedback" id="feedback-stack"></div>
+
+  <div class="overlay" id="overlay">
+    <div class="overlay-card">
+      <h1 id="ov-title">准备开始</h1>
+      <p id="ov-desc">请在屏幕前坐好，保持安静。点击开始后会有 3 秒倒计时。</p>
+      <div class="countdown hidden" id="ov-count"></div>
+      <div class="overlay-actions">
+        <button class="btn btn-primary" id="ov-action">开始盯盘</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/common.js"></script>
+  <script src="/vendor/echarts.min.js"></script>
+  <script src="/assets/trading.js"></script>
+</body>
+</html>

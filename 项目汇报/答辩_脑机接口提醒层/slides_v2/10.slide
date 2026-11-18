@@ -1,0 +1,66 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员③讲）从"判得准"到"有没有用"，中间隔着一个实验：提醒到底有没有让人做得更好。
+
+平台叫 WATCHLAB，我做的：给一段行情，买卖 20 次，每两秒记一次状态，最后把"决策时是什么状态"和"做了什么决策"对起来。右下角那个提醒就是我们的系统弹的。
+
+设计：同一个人做两轮，一轮开提醒一轮关，其余条件相同，自己和自己比。看三个数：下单那一刻状态好不好、多少时间真的在盯盘、提醒后一分钟内有没有改善。
+
+平台跑通、指标定好、重算脚本写完；实验还没做完——只有 1 名受试者，样本太少。
+
+交接：「最后说总量和分工。请组长讲。」`}>  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>实验：平台已就绪，还差受试者</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>10 · Experiment</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>实验</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      从"判得准"到"有没有用"，中间隔着一个实验：<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>提醒到底有没有让人做得更好</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 40, marginTop: 24, height: 386 }}>
+    {/* 左：平台截图 */}
+    <Box style={{ width: 524, display: 'flex', flexDirection: 'column' }}>
+      <Box style={{ width: 520, height: 352, backgroundImage: 'url(__IMG_WATCHLAB__)', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', border: '1px solid #E5E7EB' }} />
+      <Text style={{ fontSize: 15, color: '#8B97A8', lineHeight: 1.5, marginTop: 4 }}>
+        模拟盯盘平台实机截图：行情 + 下单 + 状态提醒（右下角）
+      </Text>
+    </Box>
+
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+
+    {/* 右：实验设计 */}
+    <Box style={{ width: 555, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>设计</Text>
+      <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.65, marginTop: 5, marginBottom: 18 }}>
+        同一个人做两轮，一轮开提醒、一轮关提醒，其余条件完全相同——自己和自己比。
+      </Text>
+
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>看三个数</Text>
+      <Box style={{ marginTop: 6, marginBottom: 18 }}>
+        <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.7 }}>
+          ① <Text style={{ display: 'inline', fontWeight: 'bold', color: '#1A2230' }}>冷静度</Text>　下单那一刻状态好不好<br />
+          ② <Text style={{ display: 'inline', fontWeight: 'bold', color: '#1A2230' }}>专注时间占比</Text>　多少时间真的在盯盘<br />
+          ③ <Text style={{ display: 'inline', fontWeight: 'bold', color: '#1A2230' }}>提醒后是否改善</Text>　提醒后一分钟内的变化
+        </Text>
+      </Box>
+
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>现在的进度</Text>
+      <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.65, marginTop: 5 }}>
+        平台跑通、指标定好、重算脚本写完；实验还没做完——只有 1 名受试者，样本太少，还做不了统计检验。
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 18, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '13px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+      平台、指标、脚本都齐了，<Text style={{ display: 'inline', fontWeight: 'bold' }}>缺的是受试者</Text>——这是下一步最主要的工作。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>平台由任务三组员交付；截图为其演示模式（模拟行情、不采集数据）</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>10 / 12</Text>
+  </Box>
+</Slide>

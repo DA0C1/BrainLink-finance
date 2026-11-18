@@ -1,0 +1,97 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员②讲）四个数：1876 条真实采集记录（5 次采集、没有缺失值）；约一万行代码（前端零依赖、后端 7 模块）；172 条记录两套程序结果完全相同；24 兆的包，解压双击就跑。
+
+分三类：数据（三种数据源都能跑、能原样重放、接触不好的记录自动丢掉）；方法（8 个状态规则对 26 篇文献核过、三段校准、实验方案与三项指标定好）；工程（15 脚本 130 项检查、两套程序互相参照、数字只有一份）。
+
+这三样都能直接接手。
+
+交接：「那它到底有没有用？这要回到实验。请任务三的同学讲。」`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>成果：数据、方法、工程，三样都能接手</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>08 · Outcome</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>产出</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      三个月做出来的东西分<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>三类</Text>：数据、方法、工程。
+    </Text>
+  </Box>
+
+  {/* 四个数字 */}
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 16, marginTop: 26 }}>
+    <Box style={{ width: 272, background: '#F7F9FC', padding: '22px 18px', borderTop: '3px solid #1E4FA8' }}>
+      <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.05 }}>1876</Text>
+      <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230', marginTop: 8 }}>条真实记录</Text>
+      <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 4, lineHeight: 1.5 }}>5 次采集 · 没有缺失值</Text>
+    </Box>
+
+    <Box style={{ width: 272, background: '#F7F9FC', padding: '22px 18px', borderTop: '3px solid #1E4FA8' }}>
+      <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.05 }}>1 万</Text>
+      <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230', marginTop: 8 }}>行代码</Text>
+      <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 4, lineHeight: 1.5 }}>前端不依赖第三方库 · 后端 7 个模块</Text>
+    </Box>
+
+    <Box style={{ width: 272, background: '#F7F9FC', padding: '22px 18px', borderTop: '3px solid #1E4FA8' }}>
+      <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.05 }}>172 条</Text>
+      <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230', marginTop: 8 }}>全部一致</Text>
+      <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 4, lineHeight: 1.5 }}>两套程序各算一遍，结果相同</Text>
+    </Box>
+
+    <Box style={{ width: 272, background: '#F7F9FC', padding: '22px 18px', borderTop: '3px solid #1E4FA8' }}>
+      <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.05 }}>24 MB</Text>
+      <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230', marginTop: 8 }}>便携交付包</Text>
+      <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 4, lineHeight: 1.5 }}>解压双击就跑 · 断网可用</Text>
+    </Box>
+  </Box>
+
+  {/* 三类资产 */}
+  <Box style={{ marginTop: 36, display: 'flex', flexDirection: 'row', gap: 34 }}>
+    <Box style={{ width: 362 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+        <Box style={{ width: 8, height: 8, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 19, fontWeight: 'bold', color: '#1A2230' }}>数据</Text>
+      </Box>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.85 }}>
+        真机 / 回放 / 模拟三种数据源都跑通{'\n'}
+        录下来的数据能原样重放{'\n'}
+        电极接触不良的记录自动丢弃，不混进判断
+      </Text>
+    </Box>
+
+    <Box style={{ width: 362 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+        <Box style={{ width: 8, height: 8, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 19, fontWeight: 'bold', color: '#1A2230' }}>方法</Text>
+      </Box>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.85 }}>
+        8 个状态的规则，对着 26 篇文献逐条核过{'\n'}
+        三段校准四分半，没过不允许开始{'\n'}
+        实验方案与三项指标已经定稿
+      </Text>
+    </Box>
+
+    <Box style={{ width: 362 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+        <Box style={{ width: 8, height: 8, background: '#1E4FA8' }} />
+        <Text style={{ fontSize: 19, fontWeight: 'bold', color: '#1A2230' }}>工程</Text>
+      </Box>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.85 }}>
+        15 个脚本 130 项自动检查，一条命令跑完{'\n'}
+        两套程序互相参照，改错哪边立刻发现{'\n'}
+        数字只有一份，不靠记忆
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 36, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '17px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>
+      这三样都是<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>可交付的</Text>——换个人接手，解压、双击，就能跑起来。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>全部数字与出处见 docs/FACTS.md</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>08 / 12</Text>
+  </Box>
+</Slide>

@@ -1,0 +1,103 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员②讲）左边是产出：文献 26 篇（全部核验 DOI）、代码约一万行、真机 1876 条记录、15 个脚本 130 项检查、24 兆的包。
+
+右边是分工，按做出来的东西分：组长做文献、判别算法、校准、两套程序对照；任务一做界面和提醒；任务二定指标、写验证；任务三做实验平台；任务四做采集、录制和设备自检。
+
+只有两个地方需要事先说好：指标怎么算、每条记录有哪几项，这两处由组长统一。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>做了多少，谁做的</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>09 · Output · Team</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>总量</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      前面讲的每一句背后都有东西，这一页把<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>东西和人</Text>一起摆出来。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 40, marginTop: 24, height: 372 }}>
+    {/* 左：工作量 */}
+    <Box style={{ width: 548, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1, marginBottom: 8 }}>做了什么</Text>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', background: '#F7F9FC', padding: '9px 10px', borderBottom: '2px solid #1E4FA8' }}>
+        <Text style={{ width: 120, fontSize: 14, fontWeight: 'bold', color: '#5C6879' }}>类别</Text>
+        <Text style={{ width: 180, fontSize: 14, fontWeight: 'bold', color: '#5C6879' }}>量</Text>
+        <Text style={{ width: 238, fontSize: 14, fontWeight: 'bold', color: '#5C6879' }}>说明</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '16px 10px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 120, fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>文献</Text>
+        <Text style={{ width: 180, fontSize: 17, color: '#1E4FA8', fontWeight: 'bold' }}>26 篇</Text>
+        <Text style={{ width: 238, fontSize: 15, color: '#4A5568' }}>全部核验 DOI</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '16px 10px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 120, fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>代码</Text>
+        <Text style={{ width: 180, fontSize: 17, color: '#1E4FA8', fontWeight: 'bold' }}>约 1 万行</Text>
+        <Text style={{ width: 238, fontSize: 15, color: '#4A5568' }}>前端不依赖第三方库 · 后端 7 个模块</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '16px 10px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 120, fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>真机数据</Text>
+        <Text style={{ width: 180, fontSize: 17, color: '#1E4FA8', fontWeight: 'bold' }}>1876 条</Text>
+        <Text style={{ width: 238, fontSize: 15, color: '#4A5568' }}>5 次采集，没有缺失值</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '16px 10px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 120, fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>验证</Text>
+        <Text style={{ width: 180, fontSize: 17, color: '#1E4FA8', fontWeight: 'bold' }}>15 脚本 / 130 项</Text>
+        <Text style={{ width: 238, fontSize: 15, color: '#4A5568' }}>两套程序 172 条一致</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '16px 10px' }}>
+        <Text style={{ width: 120, fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>交付</Text>
+        <Text style={{ width: 180, fontSize: 17, color: '#1E4FA8', fontWeight: 'bold' }}>24 MB</Text>
+        <Text style={{ width: 238, fontSize: 15, color: '#4A5568' }}>解压双击就跑，断网可用</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+
+    {/* 右：分工 */}
+    <Box style={{ width: 530, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1, marginBottom: 8 }}>谁做的</Text>
+
+      <Box style={{ borderLeft: '3px solid #1E4FA8', padding: '9px 12px', marginBottom: 9, background: '#F7F9FC' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>组长　文献、判别算法、校准、两套程序对照</Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', padding: '9px 12px', marginBottom: 9, background: '#F7F9FC' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>任务一　界面、提醒、校准引导</Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', padding: '9px 12px', marginBottom: 9, background: '#F7F9FC' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>任务二　指标定义、验证方案</Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', padding: '9px 12px', marginBottom: 9, background: '#F7F9FC' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>任务三　模拟盯盘平台</Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', padding: '9px 12px', background: '#F7F9FC' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>任务四　串口、录制、设备自检</Text>
+      </Box>
+
+      <Text style={{ fontSize: 15, color: '#8B97A8', lineHeight: 1.6, marginTop: 12 }}>
+        按做出来的东西分，不按人头平均分；接口先说好，各做各的。
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 20, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '13px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+      只有两个地方需要事先说好：<Text style={{ display: 'inline', fontWeight: 'bold' }}>指标怎么算</Text>、<Text style={{ display: 'inline', fontWeight: 'bold' }}>每条记录有哪几项</Text>——这两处由组长统一，其余四段真并行。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>所有数字统一维护在 docs/FACTS.md</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>09 / 12</Text>
+  </Box>
+</Slide>

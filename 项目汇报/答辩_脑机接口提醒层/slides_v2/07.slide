@@ -1,0 +1,73 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`这就是跑起来的界面：左边状态区（当前状态、环形可信度、六个指标、八个格子），中间曲线，右边提醒。
+
+（转向操作位）「看它跑。」
+（他切到模拟页）别看我这张图，直接看它跑。这里跑的是合成数据——真机数据不带到现场，但判别算法是同一套。
+「点一下焦虑。」
+（他点一次；等 3–7 秒）亮了，右下角也弹了一句。这一下是它自己算出来的，不是我画的。
+「回到 PPT。」
+
+右边三条：每格一根可信度条；不够可信就变暗、加虚线环；判不了就不给分——这几格都是横线，不是 0 分。真机没有心率通道时，压力那格会一直暗着，鼠标放上去才告诉你为什么。
+
+所以每个格子回答两件事：现在是什么状态，这个判断有多可信。
+
+交接：「东西做出来了。三个月到底做出了什么？请任务二的同学讲。」`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>做出来是什么样</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>07 · Interface</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>界面</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      后台算的东西，屏幕上要能<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>直接拿来做决定</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 40, marginTop: 24, height: 384 }}>
+    {/* 左：真实截图 */}
+    <Box style={{ width: 500, display: 'flex', flexDirection: 'column' }}>
+      <Box style={{ width: 500, height: 347, backgroundImage: 'url(__IMG_MAIN__)', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', border: '1px solid #E5E7EB' }} />
+      <Text style={{ fontSize: 15, color: '#8B97A8', lineHeight: 1.5, marginTop: 8 }}>
+        实机运行截图（回放模式）
+      </Text>
+    </Box>
+
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+
+    {/* 右：三条设计原则 */}
+    <Box style={{ width: 579, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box style={{ marginBottom: 34 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>① 每格一根可信度条</Text>
+        <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.6, marginTop: 7 }}>
+          不用懂算法，条子越长越可信。
+        </Text>
+      </Box>
+
+      <Box style={{ marginBottom: 34 }}>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>② 不够可信就变暗</Text>
+        <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.6, marginTop: 7 }}>
+          加虚线环、变暗，一眼看出这次没那么准。
+        </Text>
+      </Box>
+
+      <Box>
+        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1A2230' }}>③ 判不了就不给分</Text>
+        <Text style={{ fontSize: 19, color: '#4A5568', lineHeight: 1.6, marginTop: 7 }}>
+          没判出来就显示"—"，不拿 0 分糊弄；真机没有心率通道时，压力格一直暗着。
+        </Text>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 20, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '14px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      每个格子都回答两件事：<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>判成了什么，有多可信</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>截图为 v3.16 实机界面，同一份演示数据可复现</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>07 / 12</Text>
+  </Box>
+</Slide>

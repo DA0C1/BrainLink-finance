@@ -1,0 +1,90 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`四个场景，从最轻的开始：盯盘防疲劳、下单前自检、交易复盘、交易室看板。
+
+三条扩展的路：先做提醒再做训练；换场景（股票→期货期权→驾驶疲劳、学习专注）；不绑定硬件。
+
+所以它不是某个 App 的功能，是一个能重复用的能力——金融是第一个场景。
+
+交接：「这个能力是怎么搭出来的？请任务四的同学讲。」`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>四个能落地的场景，三条扩展的路</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>03 · Scenarios</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>落地</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      从最轻的开始：只提醒，不替你下单。
+    </Text>
+  </Box>
+
+  {/* 四个场景 */}
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 18, marginTop: 34 }}>
+    <Box style={{ width: 277, borderTop: '3px solid #1E4FA8', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>SCENE 1</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 6 }}>盯盘防疲劳</Text>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.75, marginTop: 10 }}>
+        连续专注超过 40 分钟、判到疲劳，提醒起身休息
+      </Text>
+    </Box>
+
+    <Box style={{ width: 277, borderTop: '3px solid #1E4FA8', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>SCENE 2</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 6 }}>下单前自检</Text>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.75, marginTop: 10 }}>
+        判到焦虑时弹一次二次确认，不拦你，只让你停三秒
+      </Text>
+    </Box>
+
+    <Box style={{ width: 277, borderTop: '3px solid #1E4FA8', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>SCENE 3</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 6 }}>交易复盘</Text>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.75, marginTop: 10 }}>
+        每笔交易绑定当时状态，一个月后看到自己的错误模式
+      </Text>
+    </Box>
+
+    <Box style={{ width: 277, borderTop: '3px solid #3D7BD9', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>SCENE 4 · 团队版</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 6 }}>交易室看板</Text>
+      <Text style={{ fontSize: 16.5, color: '#4A5568', lineHeight: 1.75, marginTop: 10 }}>
+        多人在岗时的状态总览，风控岗一眼看到谁该换班
+      </Text>
+    </Box>
+  </Box>
+
+  {/* 三条路径 */}
+  <Box style={{ marginTop: 42, display: 'flex', flexDirection: 'row', gap: 20, background: '#F7F9FC', padding: '26px 24px' }}>
+    <Box style={{ width: 340 }}>
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1E4FA8' }}>先做提醒，再做训练</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.65, marginTop: 8 }}>
+        用久了，每人一条自己的状态曲线
+      </Text>
+    </Box>
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+    <Box style={{ width: 340 }}>
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1E4FA8' }}>换场景</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.65, marginTop: 8 }}>
+        股票 → 期货期权 → 驾驶疲劳、学习专注
+      </Text>
+    </Box>
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+    <Box style={{ width: 340 }}>
+      <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1E4FA8' }}>不绑定硬件</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.65, marginTop: 8 }}>
+        任何单通道脑电设备接进来，都能给出状态
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 36, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '17px 22px', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      所以它不是某个 App 的功能，是一个<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>能重复用的能力</Text>：换个场景，接上设备就能用。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>脑机接口数据在金融实践中的应用 · 课程答辩</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>03 / 12</Text>
+  </Box>
+</Slide>

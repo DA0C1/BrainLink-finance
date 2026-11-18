@@ -1,0 +1,40 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`最后一句，放慢：
+
+它不告诉你该买什么，只告诉你现在适不适合做决定。
+
+八个状态、1876 条真实记录、一条命令复现全部结果。
+
+谢谢各位老师。——说完停住，不要补"以上就是我们的汇报"。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 8, height: 720, background: '#1E4FA8' }} />
+
+  <Box style={{ height: 600, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingLeft: 44 }}>
+    <Text style={{ fontSize: 15, color: '#1E4FA8', fontWeight: 'bold', letterSpacing: 2, marginBottom: 24 }}>
+      CONCLUSION
+    </Text>
+
+    <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1A2230', lineHeight: 1.45 }}>
+      它不告诉你该买什么，
+    </Text>
+    <Text style={{ fontSize: 42, fontWeight: 'bold', color: '#1E4FA8', lineHeight: 1.45, marginTop: 6 }}>
+      只告诉你现在适不适合做决定。
+    </Text>
+
+    <Box style={{ width: 96, height: 5, background: '#1E4FA8', marginTop: 30, marginBottom: 24 }} />
+
+    <Text style={{ fontSize: 20, color: '#4A5568', lineHeight: 1.8 }}>
+      八个状态 · 1876 条真实记录 · 一条命令复现全部结果
+    </Text>
+
+    <Text style={{ fontSize: 17, color: '#8B97A8', lineHeight: 1.7, marginTop: 16 }}>
+      戴一个几百块的头环，屏幕上就能看到状态，该提醒的时候它会说话。
+    </Text>
+
+    <Box style={{ width: 560, height: 1, background: '#D6DCE5', marginTop: 40, marginBottom: 18 }} />
+
+    <Text style={{ fontSize: 15, color: '#8B97A8', lineHeight: 1.75 }}>
+      脑机接口选修课 · 小组项目 · 课程答辩<br />
+      2026 年 11 月
+    </Text>
+  </Box>
+</Slide>

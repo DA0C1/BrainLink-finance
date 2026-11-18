@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>受试者入场 · WatchLab</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">WATCHLAB</span>
+      <span class="sub">受试者入场</span>
+    </div>
+    <nav class="nav">
+      <a href="/">返回首页</a>
+      <a href="/research">研究者入口</a>
+    </nav>
+  </header>
+
+  <main class="entry-wrap">
+    <div class="entry-head">
+      <h1>模拟盯盘任务</h1>
+      <p>请在安静环境中坐好，确认设备连接后开始。整轮过程约 10 分钟，中途不暂停。</p>
+    </div>
+    <div class="entry-body">
+      <div class="meta-grid" id="meta-grid">
+        <div class="meta-item"><div class="k">受试者编号</div><div class="v" id="m-subject">—</div></div>
+        <div class="meta-item"><div class="k">实验轮次</div><div class="v" id="m-round">—</div></div>
+        <div class="meta-item"><div class="k">预计时长</div><div class="v" id="m-duration">—</div></div>
+        <div class="meta-item"><div class="k">设备状态</div><div class="v" id="m-device">—</div></div>
+      </div>
+
+      <div class="guide">
+        <h3>任务说明</h3>
+        <ol>
+          <li>屏幕会按固定节奏（约每 2 秒一次）更新一只模拟标的价格，初始资金 10 万元。</li>
+          <li>你可以选择 1/4、1/2、3/4 或全仓，然后点击“买入”或“卖出”。</li>
+          <li>盘中会出现市场消息弹窗，它们会自动消失，不影响你继续操作。</li>
+          <li>请按自己的判断交易，不需要追求收益最大化；过程中请不要切换窗口。</li>
+          <li>本轮结束后页面会提示“本轮完成”，请举手示意主试。</li>
+        </ol>
+      </div>
+
+      <label class="checkline">
+        <input type="checkbox" id="consent">
+        <span>我已阅读任务说明，理解本轮会记录我的交易操作与设备状态数据，并同意在课程研究范围内使用这些数据。</span>
+      </label>
+
+      <div class="row mt12">
+        <button class="btn btn-primary grow" id="btn-enter" disabled>进入实验</button>
+        <a class="btn btn-ghost" href="/">取消</a>
+      </div>
+      <p class="small muted mt12" id="entry-msg"></p>
+    </div>
+  </main>
+
+  <script src="/assets/common.js"></script>
+  <script src="/assets/entry.js"></script>
+</body>
+</html>

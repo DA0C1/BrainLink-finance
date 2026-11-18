@@ -1,0 +1,100 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`八个状态，五步判出来，不是"哪个频段高就判哪个"。
+
+五步：看一段，不看单条 → 算几个特征 → 对照八套规则（必须同时满足）→ 连续满足才算 → 给 0 到 1 的可信度。
+
+为什么不是打分再相加？那样任何一项抖一下总分就变，结论也没法解释。同时满足几个状态时，取最需要提醒的那一个。
+
+八个状态之外还有一个 neutral，就是"说不清"，大约占四分之一时间。
+
+每个状态的规则都有出处，但证据强弱不一样，我们分三种说法：
+压力——文献里有具体阈值，直接说"按文献阈值"；
+专注、分心、放松、嗜睡——文献只说方向（比如放松时 α 会升高），具体门限是我们定的；
+焦虑、疲劳、心流——完全是我们自己定的规则，只能说"和这个状态一致的模式"，不能说"诊断出"。
+
+交接：「规则有了，但它是相对的。怎么落到每个人身上？请任务一的同学讲。」`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>怎么实现的（二）：八个状态，五步判出来</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>05 · Judgement</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>五步</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      不是"哪个频段高就判哪个"；五步走完才给结论，每一步都能单独查。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 25, marginTop: 36 }}>
+    <Box style={{ width: 212, borderTop: '3px solid #1E4FA8', paddingTop: 12 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>STEP 1</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 5 }}>取最近一段</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6, marginTop: 8 }}>
+        不看单条，看最近十几秒的整体
+      </Text>
+    </Box>
+
+    <Box style={{ width: 212, borderTop: '3px solid #1E4FA8', paddingTop: 12 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>STEP 2</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 5 }}>算几个特征</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6, marginTop: 8 }}>
+        哪个频段高、哪个低、谁比谁高
+      </Text>
+    </Box>
+
+    <Box style={{ width: 212, borderTop: '3px solid #1E4FA8', paddingTop: 12 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>STEP 3</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 5 }}>过八套规则</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6, marginTop: 8 }}>
+        每个状态一套规则，几条必须同时满足
+      </Text>
+    </Box>
+
+    <Box style={{ width: 212, borderTop: '3px solid #1E4FA8', paddingTop: 12 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>STEP 4</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 5 }}>要持续才算</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6, marginTop: 8 }}>
+        满足一下不算，要连续满足几秒
+      </Text>
+    </Box>
+
+    <Box style={{ width: 212, borderTop: '3px solid #1E4FA8', paddingTop: 12 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>STEP 5</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 5 }}>给一个可信度</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.6, marginTop: 8 }}>
+        0–1 的可信度；不够就不提醒
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 32, background: '#F7F9FC', borderLeft: '3px solid #3D7BD9', padding: '12px 20px' }}>
+    <Text style={{ fontSize: 18, color: '#4A5568', lineHeight: 1.6 }}>
+      为什么不是"给每个频段打个分再相加"？那样任何一项抖一下，总分就变，判出来的结论也没法解释——<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1A2230' }}>我们用"同时满足"，而不是"加权求和"</Text>。如果同时有几个状态都满足，取最需要提醒的那一个——宁可多提醒一次，也不漏掉真该打断你的那次。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 10, marginTop: 34, alignItems: 'center' }}>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>专注</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>分心</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>放松</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>焦虑</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>心流</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>嗜睡</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>疲劳</Text></Box>
+    <Box style={{ background: '#1E4FA8', padding: '11px 18px' }}><Text style={{ fontSize: 19, fontWeight: 'bold', color: '#FFFFFF' }}>压力</Text></Box>
+    <Box style={{ background: '#F7F9FC', border: '1px dashed #8B97A8', padding: '10px 18px' }}>
+      <Text style={{ fontSize: 17, color: '#8B97A8' }}>说不清 → neutral（约 1/4 时间）</Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 28, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '13px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+      <Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>26 篇文献</Text>里，只有「压力」有具体阈值；专注、分心、放松、嗜睡只有方向共识；焦虑、疲劳、心流是我们自定的。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>脑机接口数据在金融实践中的应用 · 课程答辩</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>05 / 12</Text>
+  </Box>
+</Slide>

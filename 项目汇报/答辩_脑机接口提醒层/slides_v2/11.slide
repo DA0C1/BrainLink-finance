@@ -1,0 +1,78 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员③讲）左边是已经做到的：能双击就跑的完整系统、1876 条真实记录、一套能复现的验证、24 兆的包。
+
+中间是正在做的：实验平台就绪，20 次决策、两轮对照、三项指标都定了，就差把人跑够——下一步招 4 到 6 名受试者，每人两轮共 40 次。
+
+右边是计划：换设备、扩场景，有标签后模型可换、接口不变。
+
+现在的限制：1 名受试者、没有金标准、设备没有心率通道——所以现在只做提醒，不做诊断。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>已经做到的，和接下来要做的</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>11 · Roadmap</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>进度</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      系统已经能跑，数据已经落地，<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>差的是把人跑够</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 20, marginTop: 26, height: 258 }}>
+    {/* 已完成 */}
+    <Box style={{ width: 373, display: 'flex', flexDirection: 'column', borderTop: '3px solid #1E4FA8', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>已完成</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 4, marginBottom: 14 }}>能跑、有数据、可复现</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.85 }}>
+        · 完整系统：采集 → 判别 → 提醒<br />
+        · 1876 条真实记录，5 段采集<br />
+        · 两套程序 172 条结果一致<br />
+        · 24 MB 便携包，双击就跑
+      </Text>
+    </Box>
+
+    {/* 进行中 */}
+    <Box style={{ width: 373, display: 'flex', flexDirection: 'column', borderTop: '3px solid #3D7BD9', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#3D7BD9', letterSpacing: 1 }}>进行中</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#1A2230', marginTop: 4, marginBottom: 14 }}>把实验跑起来</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.85 }}>
+        · 模拟盯盘平台已就绪（20 次决策）<br />
+        · 三项指标已定稿<br />
+        · 两轮对照：有提醒 / 无提醒<br />
+        · 待补：受试者 N = 4–6
+      </Text>
+    </Box>
+
+    {/* 计划 */}
+    <Box style={{ width: 373, display: 'flex', flexDirection: 'column', borderTop: '3px solid #B8C2D0', paddingTop: 16 }}>
+      <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>计划</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#4A5568', marginTop: 4, marginBottom: 14 }}>扩设备、扩场景、迭代</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.85 }}>
+        · 换设备：任何单通道脑电设备<br />
+        · 扩场景：期货、驾驶、学习<br />
+        · 有标签后，模型可换、接口不变
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 30, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 22, padding: '20px 24px', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1, width: 88 }}>下一步</Text>
+    <Text style={{ fontSize: 21, color: '#1A2230', lineHeight: 1.5, width: 700 }}>
+      招 <Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>4–6 名受试者</Text>，每人两轮共 40 次决策
+    </Text>
+    <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.5 }}>
+      平台、指标、脚本都已就位，只差这一步
+    </Text>
+  </Box>
+
+  <Box style={{ marginTop: 22, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '14px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.55 }}>
+      现在的限制：<Text style={{ display: 'inline', fontWeight: 'bold' }}>1 名受试者、无金标准、设备无心率通道</Text>——所以现在只做提醒，不做诊断。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>脑机接口数据在金融实践中的应用 · 课程答辩</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>11 / 12</Text>
+  </Box>
+</Slide>

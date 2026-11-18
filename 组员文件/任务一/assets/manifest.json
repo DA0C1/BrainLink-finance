@@ -1,0 +1,68 @@
+{
+  "generator": "gen_ui_assets.py",
+  "assets": [
+    {
+      "name": "empty-remind-dark",
+      "file": "empty-remind-dark.png",
+      "width": 768,
+      "height": 768,
+      "seed": 20261111,
+      "steps": 26,
+      "cfg": 2.5,
+      "model": "qwen-image-2.1NVFP4.safetensors",
+      "prompt": "一只悬挂的细线铃铛，铃身下方垂着一条短短的静止摆锤，铃口朝下、没有声响；铃铛右侧留空，整体安静。极简矢量线稿插画，单一浅灰蓝色线条，粗细均匀，圆头线帽，大量留白，平面设计，UI 空状态插图风格，构图居中，主体占画面 55%，四周留空，无文字，无边框，无水印。深藏青背景 #141D2E，背景完全干净无任何纹理",
+      "negative": "photo, photorealistic, 3d render, text, watermark, signature, logo, frame, border, blurry, low quality, deformed, colorful paint, oil painting, western art, cartoon, anime, oversaturated, clutter, gradient background, drop shadow, sticker outline",
+      "sha256_16": "3d208e2fae312163",
+      "bytes": 309988,
+      "elapsed_s": 24.1,
+      "server": "http://127.0.0.1:8188",
+      "workflow": "qwen-image-2.1 (UNETLoader+CLIPLoader+ModelSamplingAuraFlow 3.1)",
+      "created": "2026-11-11 14:23:48",
+      "alpha": {
+        "bg": "#001621",
+        "line_is_dark": false,
+        "line": "#96aac2",
+        "ref_lum": 186,
+        "bg_lum": 17,
+        "opaque_px": 11260,
+        "coverage": 1.9,
+        "file": "empty-remind-dark.png",
+        "file_bytes": 17663,
+        "sha256_16": "0f3501eff150c16f",
+        "raw_bytes": 309988
+      }
+    },
+    {
+      "name": "empty-remind-light",
+      "file": "empty-remind-light.png",
+      "width": 768,
+      "height": 768,
+      "seed": 20261111,
+      "steps": 26,
+      "cfg": 2.5,
+      "model": "qwen-image-2.1NVFP4.safetensors",
+      "prompt": "一只悬挂的细线铃铛，铃身下方垂着一条短短的静止摆锤，铃口朝下、没有声响；铃铛右侧留空，整体安静。极简矢量线稿插画，单一浅灰蓝色线条，粗细均匀，圆头线帽，大量留白，平面设计，UI 空状态插图风格，构图居中，主体占画面 55%，四周留空，无文字，无边框，无水印。纯白背景 #FFFFFF，背景完全干净无任何纹理",
+      "negative": "photo, photorealistic, 3d render, text, watermark, signature, logo, frame, border, blurry, low quality, deformed, colorful paint, oil painting, western art, cartoon, anime, oversaturated, clutter, gradient background, drop shadow, sticker outline",
+      "sha256_16": "7f9f08932fbaa4b0",
+      "bytes": 518134,
+      "elapsed_s": 48.1,
+      "server": "http://127.0.0.1:8188",
+      "workflow": "qwen-image-2.1 (UNETLoader+CLIPLoader+ModelSamplingAuraFlow 3.1)",
+      "created": "2026-11-11 14:23:07",
+      "alpha": {
+        "bg": "#fefdfe",
+        "line_is_dark": true,
+        "line": "#8496ac",
+        "ref_lum": 191,
+        "bg_lum": 253,
+        "opaque_px": 9327,
+        "coverage": 1.6,
+        "file": "empty-remind-light.png",
+        "file_bytes": 14133,
+        "sha256_16": "1cae4b128ba4415d",
+        "raw_bytes": 518134
+      }
+    }
+  ],
+  "updated": "2026-11-11 14:30:58"
+}

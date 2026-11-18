@@ -1,0 +1,102 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`看三个现状。
+
+第一，同一件事，状态不同，判断就不同。同样一条消息，累的时候和清醒的时候，会做出完全不同的决定。
+第二，交易记录里没有"当时状态"这一列，只有时间、价格、数量。
+第三，事后补不回来：当时没记，靠回忆又会被现在的状态带偏。
+
+所以这个东西有人要：个人投资者长时间盯盘、机构交易岗和风控岗、投教投顾。
+
+一句话：这不是又一个行情指标，是给交易记录加一列——下单那一刻，你是什么状态。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>为什么金融场景需要"状态"这个信号</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>02 · Why it matters</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>痛点</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      系统知道你下了什么单，不知道你<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>下单时是什么状态</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 44, marginTop: 26, height: 372 }}>
+    {/* 左：三个事实 */}
+    <Box style={{ width: 516, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#1A2230', marginBottom: 6 }}>三个事实</Text>
+
+      <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingTop: 10, paddingBottom: 10 }}>
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8', width: 22 }}>1</Text>
+        <Box style={{ width: 482 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>状态决定判断质量</Text>
+          <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.6, marginTop: 3 }}>
+            同样一条消息，累的时候和清醒的时候，会做出完全不同的决定
+          </Text>
+        </Box>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8', width: 22 }}>2</Text>
+        <Box style={{ width: 482 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>状态完全不可见</Text>
+          <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.6, marginTop: 3 }}>
+            交易记录只有时间、价格、数量，没有"当时状态"这一列
+          </Text>
+        </Box>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1E4FA8', width: 22 }}>3</Text>
+        <Box style={{ width: 482 }}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>事后无法重建</Text>
+          <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.6, marginTop: 3 }}>
+            当时没记，事后补不回来；靠回忆又会被现在的状态带偏
+          </Text>
+        </Box>
+      </Box>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+
+    {/* 右：三类用户 */}
+    <Box style={{ width: 550, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#1A2230', marginBottom: 6 }}>谁会需要它</Text>
+
+      <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingTop: 10, paddingBottom: 10 }}>
+      <Box style={{ borderLeft: '3px solid #1E4FA8', background: '#F7F9FC', padding: '15px 16px' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>个人投资者</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.55, marginTop: 3 }}>
+          连续盯盘两小时以上，需要有人提醒"该歇一会儿了"
+        </Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', background: '#F7F9FC', padding: '15px 16px' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>机构交易 / 风控岗</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.55, marginTop: 3 }}>
+          需要一张团队状态看板，避免疲劳状态下连续操作
+        </Text>
+      </Box>
+
+      <Box style={{ borderLeft: '3px solid #3D7BD9', background: '#F7F9FC', padding: '15px 16px' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1A2230' }}>投教 / 投顾</Text>
+        <Text style={{ fontSize: 16, color: '#4A5568', lineHeight: 1.55, marginTop: 3 }}>
+          帮客户看见自己的决策模式，比讲一百遍"别追涨"有用
+        </Text>
+      </Box>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 20, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '15px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>
+      交易记录里再<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>加一列</Text>：下单那一刻，你是什么状态。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>脑机接口数据在金融实践中的应用 · 课程答辩</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>02 / 12</Text>
+  </Box>
+</Slide>

@@ -1,0 +1,112 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员④讲）从硬件到屏幕，只有三层。
+
+最左边是采集层，我做的：串口里是字节流，要拆包、校验、拼成一条完整记录。最容易出的错是"没戴好"，设备会给一个特殊值，不处理就会被当成"特别放松"，我的处理是直接丢掉这条记录。
+
+（自己切到真机画面，停 8–10 秒）这是现在戴着的设备，每秒一条在往里进，电极接触正常。它不保证这半分钟能判出什么，但数据是真的在流。（切回 PPT）
+
+中间是判别层，组长做的；最右是呈现层，任务一做的。
+
+层与层之间只传一种东西：每秒一条固定格式的记录——8 个频段数值，加注意力、放松度。
+
+交接：「数据进来了，怎么变成状态的？请组长讲。」`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>怎么实现的（一）：系统分三层</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>04 · Architecture</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>结构</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      从硬件到屏幕只有三层；每一层都写清了"出错时怎么办"。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', marginTop: 30, height: 300 }}>
+    {/* 采集层 */}
+    <Box style={{ width: 352, display: 'flex', flexDirection: 'column', border: '1px solid #D6DCE5' }}>
+      <Box style={{ background: '#1E4FA8', padding: '12px 16px' }}>
+        <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#FFFFFF' }}>① 采集层</Text>
+        <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>任务四 · 组员④</Text>
+      </Box>
+      <Box style={{ padding: '16px 16px' }}>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输入</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>串口里的字节流</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>做什么</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>拆包、校验、拼成一条记录</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输出</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>每秒一条：8 个频段 + 注意力 / 放松度</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 52, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 26, color: '#1E4FA8', fontWeight: 'bold' }}>→</Text>
+    </Box>
+
+    {/* 判别层 */}
+    <Box style={{ width: 352, display: 'flex', flexDirection: 'column', border: '1px solid #D6DCE5', borderTop: '3px solid #1E4FA8' }}>
+      <Box style={{ background: '#1E4FA8', padding: '12px 16px' }}>
+        <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#FFFFFF' }}>② 判别层</Text>
+        <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>判别算法 · 组长</Text>
+      </Box>
+      <Box style={{ padding: '16px 16px' }}>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输入</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>一条一条的记录</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>做什么</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>算特征 → 按 8 套规则判 → 给可信度</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输出</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>当前状态 + 一个 0–1 的可信度</Text>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 52, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 26, color: '#1E4FA8', fontWeight: 'bold' }}>→</Text>
+    </Box>
+
+    {/* 呈现层 */}
+    <Box style={{ width: 352, display: 'flex', flexDirection: 'column', border: '1px solid #D6DCE5' }}>
+      <Box style={{ background: '#1E4FA8', padding: '12px 16px' }}>
+        <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#FFFFFF' }}>③ 呈现层</Text>
+        <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>任务一 · 组员①</Text>
+      </Box>
+      <Box style={{ padding: '16px 16px' }}>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输入</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>状态 + 可信度</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>做什么</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5, marginBottom: 10 }}>亮格子、画曲线、决定要不要提醒</Text>
+        <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>输出</Text>
+        <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>8 个格子 + 一句话提醒</Text>
+      </Box>
+    </Box>
+  </Box>
+
+  {/* 三层的失败出口，独立一行保证对齐 */}
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 20, marginTop: 20 }}>
+    <Box style={{ width: 373, borderLeft: '3px solid #D9534F', background: '#F7F9FC', padding: '10px 14px' }}>
+      <Text style={{ fontSize: 16, color: '#1A2230', lineHeight: 1.5 }}>
+        <Text style={{ display: 'inline', fontWeight: 'bold', color: '#D9534F' }}>出错时　</Text>没戴好 → 丢掉这一条，不当放松
+      </Text>
+    </Box>
+    <Box style={{ width: 373, borderLeft: '3px solid #D9534F', background: '#F7F9FC', padding: '10px 14px' }}>
+      <Text style={{ fontSize: 16, color: '#1A2230', lineHeight: 1.5 }}>
+        <Text style={{ display: 'inline', fontWeight: 'bold', color: '#D9534F' }}>出错时　</Text>判不出来 → 输出 neutral，不硬猜
+      </Text>
+    </Box>
+    <Box style={{ width: 373, borderLeft: '3px solid #D9534F', background: '#F7F9FC', padding: '10px 14px' }}>
+      <Text style={{ fontSize: 16, color: '#1A2230', lineHeight: 1.5 }}>
+        <Text style={{ display: 'inline', fontWeight: 'bold', color: '#D9534F' }}>出错时　</Text>没有心率 → 压力格变暗、不给分
+      </Text>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 18, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '14px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 19, color: '#1A2230', lineHeight: 1.5 }}>
+      层与层之间只传一种东西：<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>每秒一条固定格式的记录</Text>——8 个频段的数值，加注意力、放松度。所以每层能单独换、单独测，五个人才能各做各的。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>脑机接口数据在金融实践中的应用 · 课程答辩</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>04 / 12</Text>
+  </Box>
+</Slide>

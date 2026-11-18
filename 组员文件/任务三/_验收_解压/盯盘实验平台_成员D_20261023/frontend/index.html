@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WatchLab · BCI 模拟盯盘实验平台</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">WATCHLAB</span>
+      <span class="sub">BCI 模拟盯盘实验平台</span>
+    </div>
+    <nav class="nav">
+      <a href="/research">研究者入口</a>
+      <a href="/docs" target="_blank" rel="noopener">接口文档</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="kicker">理智度验证 · 第二阶段 T3</div>
+        <h1>在波动的行情里，<br>看见决策背后的状态。</h1>
+        <p>
+          这不是实盘交易软件。它是一个受控的模拟盯盘实验平台：受试者在 10 分钟行情中自主买卖，
+          系统同步接入脑电状态引擎，在“有反馈”轮给出状态提醒，在“无反馈”轮完全静默，
+          最后用冷静度、专注时间占比与提醒起效率比较两轮差异。
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btn-demo">进入 3 分钟演示</button>
+          <a class="btn btn-dark" href="/research">研究者控制台</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <h3>受试者入口</h3>
+        <p>请使用主试提供的 6 位会话码进入。会话码绑定受试者编号、轮次与实验顺序。</p>
+        <div class="code-row">
+          <input type="text" id="code" maxlength="6" placeholder="例如 A7K2QX" autocomplete="off">
+          <button class="btn btn-primary" id="btn-join">进入</button>
+        </div>
+        <p class="small muted mt12" id="join-msg"></p>
+      </aside>
+    </section>
+
+    <section class="feature-grid">
+      <article class="feature">
+        <div class="num">01</div>
+        <h3>只展示已经发生的行情</h3>
+        <p>价格由服务端按固定节奏（正式实验每 2 秒一个点）推送，前端拿不到未来路径与未来事件；受试者只能依据历史与当前价格决策。</p>
+      </article>
+      <article class="feature">
+        <div class="num">02</div>
+        <h3>三类情绪干扰</h3>
+        <p>追涨诱导、突发消息、波动冲击在关键时刻弹出，8 秒自动消失，不阻塞下单，也不提供关闭开关。</p>
+      </article>
+      <article class="feature">
+        <div class="num">03</div>
+        <h3>有反馈 / 无反馈对照</h3>
+        <p>两轮使用同一价格剧本与同一批事件，唯一差别是是否把脑状态提醒给受试者；所有决策与状态逐笔落盘。</p>
+      </article>
+    </section>
+
+    <p class="footer-note">
+      边界说明：当前状态引擎默认使用内置模拟引擎，用于流程演示与自检，不代表真实脑电判别准确率；
+      真实设备接入与参数标定完成前，平台不作为医疗、投资建议或实盘工具使用。
+    </p>
+  </main>
+
+  <script src="/assets/common.js"></script>
+  <script src="/assets/landing.js"></script>
+</body>
+</html>

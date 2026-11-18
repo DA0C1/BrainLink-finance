@@ -1,0 +1,14 @@
+# 可选依赖（v3.16）
+#
+# 核心采集/回放/引擎**只用标准库**；以下是可选能力所需：
+#   · pyserial  —— 真机串口（便携运行时的 runtime/python 已内置 3.5）
+#   · Pillow    —— 仅 gen_ui_assets.py --post（素材后处理；便携运行时未内置）
+#
+# 安装（系统 Python）：
+#   py -m pip install --isolated -r requirements-optional.txt
+#
+# 官方 BrainLinkParser.pyd 未列入：它只发布 Python 3.11 的闭源二进制，
+# 本机 3.13 装不上；项目会自动回退 tgam_parser（无 RR/心率/gyro）。
+
+pyserial==3.5
+Pillow>=10.0

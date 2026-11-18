@@ -1,0 +1,133 @@
+<Slide style={{ width: 1280, height: 720, background: '#FFFFFF', padding: '100px 60px 60px', position: 'relative' }}
+  notes={`（组员①讲）两件事。
+
+第一件是个体校准：不同人的正常水平差好几倍，阈值写死换个人就不成立。所以用之前先做三段——闭眼不动 30 秒、睁眼静坐 2 分钟、闭眼放松 2 分钟，共 4 分半。没过就不让开始，界面提示"基线未建立"。
+
+第二件是分级提醒：可信度不够只写日志；出现了但不算强，提醒中心记一条；可信度够了弹一句话，还给具体做法；同状态十分钟内第三次就加重。
+
+弹出来的就是这句"疲劳累积：建议短暂休息（含眼部放松）后继续决策"。每个状态一句固定话术，不是让模型现编。
+
+右边三条打扰规则：同状态 60 秒不重复、可信度不够不弹、随时可关。`}>
+  <Box style={{ position: 'absolute', left: 0, top: 0, width: 1280, height: 64, background: '#1E4FA8', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 60, paddingRight: 60 }}>
+    <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF' }}>对每个人都准，并且知道什么时候开口</Text>
+    <Text style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>06 · Calibrate · Remind</Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', background: '#E8EFF8', borderLeft: '4px solid #1E4FA8', padding: '14px 22px', gap: 16 }}>
+    <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#1E4FA8', letterSpacing: 1 }}>两件事</Text>
+    <Text style={{ fontSize: 20, color: '#1A2230', lineHeight: 1.5 }}>
+      先把尺子量到这个人身上，再决定<Text style={{ display: 'inline', fontWeight: 'bold', color: '#1E4FA8' }}>什么时候开口</Text>。
+    </Text>
+  </Box>
+
+  <Box style={{ display: 'flex', flexDirection: 'row', gap: 40, marginTop: 24, height: 310 }}>
+    {/* 左：校准 */}
+    <Box style={{ width: 560, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#1A2230', marginBottom: 8 }}>① 个体校准</Text>
+      <Text style={{ fontSize: 17, color: '#4A5568', lineHeight: 1.65, marginBottom: 16 }}>
+        同一段脑电，不同人的正常水平差好几倍；阈值写死，换个人就不成立。
+      </Text>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+        <Box style={{ width: 86, background: '#1E4FA8', padding: '6px 0', display: 'flex', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>A · 30s</Text>
+        </Box>
+        <Text style={{ width: 450, fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>闭眼不动，记最基础的水平</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+        <Box style={{ width: 86, background: '#1E4FA8', padding: '6px 0', display: 'flex', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>B · 120s</Text>
+        </Box>
+        <Text style={{ width: 450, fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>睁眼静坐，记你平时的各项水平</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+        <Box style={{ width: 86, background: '#1E4FA8', padding: '6px 0', display: 'flex', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' }}>C · 120s</Text>
+        </Box>
+        <Text style={{ width: 450, fontSize: 17, color: '#4A5568', lineHeight: 1.5 }}>闭眼放松，记"真正放松"的样子</Text>
+      </Box>
+
+      <Box style={{ background: '#F7F9FC', borderLeft: '3px solid #D9534F', padding: '11px 14px', marginTop: 18 }}>
+        <Text style={{ fontSize: 16, color: '#1A2230', lineHeight: 1.55 }}>
+          三段共 4 分半；<Text style={{ display: 'inline', fontWeight: 'bold' }}>没过就不让开始</Text>，界面提示"基线未建立"。
+        </Text>
+      </Box>
+    </Box>
+
+    <Box style={{ width: 1, background: '#D6DCE5' }} />
+
+    {/* 右：四级提醒 */}
+    <Box style={{ width: 519, display: 'flex', flexDirection: 'column' }}>
+      <Text style={{ fontSize: 21, fontWeight: 'bold', color: '#1A2230', marginBottom: 10 }}>② 分级提醒</Text>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', background: '#F7F9FC', padding: '7px 8px', borderBottom: '2px solid #1E4FA8' }}>
+        <Text style={{ width: 96, fontSize: 14, fontWeight: 'bold', color: '#8B97A8' }}>级别</Text>
+        <Text style={{ width: 200, fontSize: 14, fontWeight: 'bold', color: '#8B97A8' }}>什么时候</Text>
+        <Text style={{ width: 215, fontSize: 14, fontWeight: 'bold', color: '#8B97A8' }}>会看到什么</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '10px 8px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 96, fontSize: 15, fontWeight: 'bold', color: '#8B97A8' }}>只记录</Text>
+        <Text style={{ width: 200, fontSize: 15, color: '#4A5568' }}>可信度不够</Text>
+        <Text style={{ width: 215, fontSize: 15, color: '#4A5568' }}>不打扰，只写日志</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '10px 8px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 96, fontSize: 15, fontWeight: 'bold', color: '#3D7BD9' }}>轻提示</Text>
+        <Text style={{ width: 200, fontSize: 15, color: '#4A5568' }}>出现了，不算强</Text>
+        <Text style={{ width: 215, fontSize: 15, color: '#4A5568' }}>提醒中心多一条</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '10px 8px', borderBottom: '1px solid #E5E7EB' }}>
+        <Text style={{ width: 96, fontSize: 15, fontWeight: 'bold', color: '#1E4FA8' }}>弹窗</Text>
+        <Text style={{ width: 200, fontSize: 15, color: '#4A5568' }}>可信度够了</Text>
+        <Text style={{ width: 215, fontSize: 15, color: '#4A5568' }}>一句话 + 具体做法</Text>
+      </Box>
+
+      <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '10px 8px', background: '#FDF3F3' }}>
+        <Text style={{ width: 96, fontSize: 15, fontWeight: 'bold', color: '#D9534F' }}>升级</Text>
+        <Text style={{ width: 200, fontSize: 15, color: '#4A5568' }}>10 分钟内第 3 次</Text>
+        <Text style={{ width: 215, fontSize: 15, color: '#4A5568' }}>加重提醒</Text>
+      </Box>
+
+    </Box>
+  </Box>
+
+  {/* 一条真实提醒 + 三条打扰规则 */}
+  <Box style={{ marginTop: 16, display: 'flex', flexDirection: 'row', gap: 22 }}>
+    <Box style={{ width: 470, border: '1px solid #E5E7EB', borderLeft: '4px solid #1E4FA8', padding: '10px 18px', background: '#FFFFFF' }}>
+      <Text style={{ fontSize: 13, fontWeight: 'bold', color: '#8B97A8', letterSpacing: 1 }}>弹窗长这样 · 系统里固定的一句话</Text>
+      <Text style={{ fontSize: 17.5, fontWeight: 'bold', color: '#1A2230', marginTop: 6, lineHeight: 1.45 }}>
+        疲劳累积：建议短暂休息（含眼部放松）后继续决策
+      </Text>
+    </Box>
+
+    <Box style={{ flex: 1, display: 'flex', flexDirection: 'row', gap: 14 }}>
+      <Box style={{ width: 208, background: '#F7F9FC', padding: '11px 16px' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>同状态 60 秒不重复</Text>
+        <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 5, lineHeight: 1.5 }}>同一件事不反复弹</Text>
+      </Box>
+      <Box style={{ width: 208, background: '#F7F9FC', padding: '11px 16px' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>可信度不够不弹</Text>
+        <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 5, lineHeight: 1.5 }}>只写日志，不打断</Text>
+      </Box>
+      <Box style={{ width: 208, background: '#F7F9FC', padding: '11px 16px' }}>
+        <Text style={{ fontSize: 17, fontWeight: 'bold', color: '#1A2230' }}>随时可关</Text>
+        <Text style={{ fontSize: 14, color: '#4A5568', marginTop: 5, lineHeight: 1.5 }}>关了就不说话，不追问</Text>
+      </Box>
+    </Box>
+  </Box>
+
+  <Box style={{ marginTop: 18, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 14, padding: '12px 22px', background: '#F7F9FC', borderTop: '2px solid #1E4FA8' }}>
+    <Text style={{ fontSize: 18, color: '#1A2230', lineHeight: 1.5 }}>
+      校准解决<Text style={{ display: 'inline', fontWeight: 'bold' }}>"对谁都准"</Text>，分级解决<Text style={{ display: 'inline', fontWeight: 'bold' }}>"什么时候说"</Text>——两件都做完，才敢让人用。
+    </Text>
+  </Box>
+
+  <Box style={{ position: 'absolute', left: 60, right: 60, top: 678, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>校准报告可导出，换机、换人时可复核</Text>
+    <Text style={{ fontSize: 14, color: '#8B97A8' }}>06 / 12</Text>
+  </Box>
+</Slide>
